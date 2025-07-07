@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > This project is designed to manage my offsite setup, which is specific to my
 > use cases, so it might not be directly useful to you. For a ready-to-use
-> solution, please refer to my [homelab project](https://github.com/khuedoan/homelab).
+> solution, please refer to my [homelab project](https://github.com/llajas/homelab).
 
 ## Project structure
 
@@ -45,7 +45,7 @@
 │   ├── ${NAMESPACE}
 │   │   └── ${APP}
 │   │       └── ${ENV}.yaml
-│   └── khuedoan
+│   └── llajas
 │       └── blog
 │           ├── local.yaml
 │           └── production.yaml

@@ -32,18 +32,18 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_Success() {
 	input := AppUpdateInput{
 		Url:       "https://github.com/example/cloudlab.git",
 		Revision:  "main",
-		Namespace: "khuedoan",
+		Namespace: "llajas",
 		App:       "blog",
 		Cluster:   "production",
 		Registry:  "registry.example.com",
 		NewImages: []activities.Image{
-			{Repository: "docker.io/khuedoan/blog", Tag: "abc123def456789"},
+			{Repository: "docker.io/llajas/blog", Tag: "abc123def456789"},
 		},
 	}
 	workspace := "/tmp/cloudlab-repos/abc123"
-	appFilePath := workspace + "/apps/khuedoan/blog/production.yaml"
+	appFilePath := workspace + "/apps/llajas/blog/production.yaml"
 	mockPushResult := &activities.PushResult{
-		Reference: "registry.example.com/khuedoan/blog:production",
+		Reference: "registry.example.com/llajas/blog:production",
 		Digest:    "sha256:abc123def456",
 	}
 
@@ -51,7 +51,7 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_Success() {
 	s.env.OnActivity(activities.UpdateAppVersion, mock.Anything,
 		workspace+"/apps", input.Namespace, input.App, input.Cluster, input.NewImages).Return(true, nil)
 	s.env.OnActivity(activities.GitAdd, mock.Anything, appFilePath).Return(nil)
-	s.env.OnActivity(activities.GitCommit, mock.Anything, workspace, "chore(khuedoan/blog): update production version").Return(nil)
+	s.env.OnActivity(activities.GitCommit, mock.Anything, workspace, "chore(llajas/blog): update production version").Return(nil)
 	s.env.OnActivity(activities.GitPush, mock.Anything, workspace).Return(nil)
 	s.env.OnActivity(activities.PushRenderedApp, mock.Anything,
 		workspace+"/apps", input.Namespace, input.App, input.Cluster, input.Registry).Return(mockPushResult, nil)
@@ -114,7 +114,7 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_GitAddFailure() {
 	input := AppUpdateInput{
 		Url:       "https://github.com/example/cloudlab.git",
 		Revision:  "main",
-		Namespace: "khuedoan",
+		Namespace: "llajas",
 		App:       "notes",
 		Cluster:   "production",
 		Registry:  "registry.example.com",
@@ -123,7 +123,7 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_GitAddFailure() {
 		},
 	}
 	workspace := "/tmp/cloudlab-repos/ghi789"
-	appFilePath := workspace + "/apps/khuedoan/notes/production.yaml"
+	appFilePath := workspace + "/apps/llajas/notes/production.yaml"
 
 	s.env.OnActivity(activities.Clone, mock.Anything, input.Url, input.Revision).Return(workspace, nil)
 	s.env.OnActivity(activities.UpdateAppVersion, mock.Anything,
@@ -142,7 +142,7 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_GitCommitFailure() {
 	input := AppUpdateInput{
 		Url:       "https://github.com/example/cloudlab.git",
 		Revision:  "main",
-		Namespace: "khuedoan",
+		Namespace: "llajas",
 		App:       "notes",
 		Cluster:   "production",
 		Registry:  "registry.example.com",
@@ -151,13 +151,13 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_GitCommitFailure() {
 		},
 	}
 	workspace := "/tmp/cloudlab-repos/ghi789"
-	appFilePath := workspace + "/apps/khuedoan/notes/production.yaml"
+	appFilePath := workspace + "/apps/llajas/notes/production.yaml"
 
 	s.env.OnActivity(activities.Clone, mock.Anything, input.Url, input.Revision).Return(workspace, nil)
 	s.env.OnActivity(activities.UpdateAppVersion, mock.Anything,
 		workspace+"/apps", input.Namespace, input.App, input.Cluster, input.NewImages).Return(true, nil)
 	s.env.OnActivity(activities.GitAdd, mock.Anything, appFilePath).Return(nil)
-	s.env.OnActivity(activities.GitCommit, mock.Anything, workspace, "chore(khuedoan/notes): update production version").Return(
+	s.env.OnActivity(activities.GitCommit, mock.Anything, workspace, "chore(llajas/notes): update production version").Return(
 		errors.New("git commit failed: nothing to commit"))
 
 	s.env.ExecuteWorkflow(AppUpdate, input)
@@ -171,7 +171,7 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_GitPushFailure() {
 	input := AppUpdateInput{
 		Url:       "https://github.com/example/cloudlab.git",
 		Revision:  "main",
-		Namespace: "khuedoan",
+		Namespace: "llajas",
 		App:       "notes",
 		Cluster:   "production",
 		Registry:  "registry.example.com",
@@ -180,13 +180,13 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_GitPushFailure() {
 		},
 	}
 	workspace := "/tmp/cloudlab-repos/ghi789"
-	appFilePath := workspace + "/apps/khuedoan/notes/production.yaml"
+	appFilePath := workspace + "/apps/llajas/notes/production.yaml"
 
 	s.env.OnActivity(activities.Clone, mock.Anything, input.Url, input.Revision).Return(workspace, nil)
 	s.env.OnActivity(activities.UpdateAppVersion, mock.Anything,
 		workspace+"/apps", input.Namespace, input.App, input.Cluster, input.NewImages).Return(true, nil)
 	s.env.OnActivity(activities.GitAdd, mock.Anything, appFilePath).Return(nil)
-	s.env.OnActivity(activities.GitCommit, mock.Anything, workspace, "chore(khuedoan/notes): update production version").Return(nil)
+	s.env.OnActivity(activities.GitCommit, mock.Anything, workspace, "chore(llajas/notes): update production version").Return(nil)
 	s.env.OnActivity(activities.GitPush, mock.Anything, workspace).Return(
 		errors.New("git push failed: authentication required"))
 
@@ -201,7 +201,7 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_PushRenderedAppFailure() {
 	input := AppUpdateInput{
 		Url:       "https://github.com/example/cloudlab.git",
 		Revision:  "main",
-		Namespace: "khuedoan",
+		Namespace: "llajas",
 		App:       "notes",
 		Cluster:   "production",
 		Registry:  "registry.example.com",
@@ -210,13 +210,13 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_PushRenderedAppFailure() {
 		},
 	}
 	workspace := "/tmp/cloudlab-repos/ghi789"
-	appFilePath := workspace + "/apps/khuedoan/notes/production.yaml"
+	appFilePath := workspace + "/apps/llajas/notes/production.yaml"
 
 	s.env.OnActivity(activities.Clone, mock.Anything, input.Url, input.Revision).Return(workspace, nil)
 	s.env.OnActivity(activities.UpdateAppVersion, mock.Anything,
 		workspace+"/apps", input.Namespace, input.App, input.Cluster, input.NewImages).Return(true, nil)
 	s.env.OnActivity(activities.GitAdd, mock.Anything, appFilePath).Return(nil)
-	s.env.OnActivity(activities.GitCommit, mock.Anything, workspace, "chore(khuedoan/notes): update production version").Return(nil)
+	s.env.OnActivity(activities.GitCommit, mock.Anything, workspace, "chore(llajas/notes): update production version").Return(nil)
 	s.env.OnActivity(activities.GitPush, mock.Anything, workspace).Return(nil)
 	s.env.OnActivity(activities.PushRenderedApp, mock.Anything,
 		workspace+"/apps", input.Namespace, input.App, input.Cluster, input.Registry).Return(
@@ -267,20 +267,20 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_MultipleImages() {
 func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_RealWorldExample() {
 	// Test with realistic data from the actual apps directory
 	input := AppUpdateInput{
-		Url:       "https://github.com/khuedoan/cloudlab.git",
+		Url:       "https://github.com/llajas/cloudlab.git",
 		Revision:  "main",
-		Namespace: "khuedoan",
+		Namespace: "llajas",
 		App:       "blog",
 		Cluster:   "production",
 		Registry:  "registry.cloudlab.lajas.tech",
 		NewImages: []activities.Image{
-			{Repository: "docker.io/khuedoan/blog", Tag: "1234567890abcdef1234567890abcdef12345678"},
+			{Repository: "docker.io/llajas/blog", Tag: "1234567890abcdef1234567890abcdef12345678"},
 		},
 	}
 	workspace := "/tmp/cloudlab-repos/realworld123"
-	appFilePath := workspace + "/apps/khuedoan/blog/production.yaml"
+	appFilePath := workspace + "/apps/llajas/blog/production.yaml"
 	mockPushResult := &activities.PushResult{
-		Reference: "registry.cloudlab.lajas.tech/khuedoan/blog:production",
+		Reference: "registry.cloudlab.lajas.tech/llajas/blog:production",
 		Digest:    "sha256:realworld789",
 	}
 
@@ -288,7 +288,7 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_RealWorldExample() {
 	s.env.OnActivity(activities.UpdateAppVersion, mock.Anything,
 		workspace+"/apps", input.Namespace, input.App, input.Cluster, input.NewImages).Return(true, nil)
 	s.env.OnActivity(activities.GitAdd, mock.Anything, appFilePath).Return(nil)
-	s.env.OnActivity(activities.GitCommit, mock.Anything, workspace, "chore(khuedoan/blog): update production version").Return(nil)
+	s.env.OnActivity(activities.GitCommit, mock.Anything, workspace, "chore(llajas/blog): update production version").Return(nil)
 	s.env.OnActivity(activities.GitPush, mock.Anything, workspace).Return(nil)
 	s.env.OnActivity(activities.PushRenderedApp, mock.Anything,
 		workspace+"/apps", input.Namespace, input.App, input.Cluster, input.Registry).Return(mockPushResult, nil)

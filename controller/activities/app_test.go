@@ -32,7 +32,7 @@ controllers:
     containers:
       main:
         image:
-          repository: docker.io/khuedoan/blog
+          repository: docker.io/llajas/blog
           tag: 6fbd90b77a81e0bcb330fddaa230feff744a7010
 service:
   main:
@@ -42,7 +42,7 @@ service:
         port: 3000
         protocol: HTTP`,
 			newImages: []Image{
-				{Repository: "docker.io/khuedoan/blog", Tag: "abc123def456789"},
+				{Repository: "docker.io/llajas/blog", Tag: "abc123def456789"},
 			},
 			expectedUpdate: true,
 		},
@@ -133,7 +133,7 @@ controllers:
     containers:
       main:
         image:
-          repository: docker.io/khuedoan/blog
+          repository: docker.io/llajas/blog
           tag: 6fbd90b77a81e0bcb330fddaa230feff744a7010`,
 			newImages: []Image{
 				{Repository: "docker.io/different/app", Tag: "newversion"},
@@ -150,7 +150,7 @@ controllers:
     containers:
       main:
         image:
-          repository: docker.io/khuedoan/blog
+          repository: docker.io/llajas/blog
           tag: 6fbd90b77a81e0bcb330fddaa230feff744a7010
   backend:
     containers:
@@ -159,7 +159,7 @@ controllers:
           repository: ghcr.io/silverbulletmd/silverbullet
           tag: v2`,
 			newImages: []Image{
-				{Repository: "docker.io/khuedoan/blog", Tag: "newcommithash123"},
+				{Repository: "docker.io/llajas/blog", Tag: "newcommithash123"},
 			},
 			expectedUpdate: true,
 		},
@@ -276,13 +276,13 @@ func TestUpdateImageTags(t *testing.T) {
     containers:
       main:
         image:
-          repository: docker.io/khuedoan/blog
+          repository: docker.io/llajas/blog
           tag: 6fbd90b77a81e0bcb330fddaa230feff744a7010`,
 			newImages: []Image{
-				{Repository: "docker.io/khuedoan/blog", Tag: "abc123def456789"},
+				{Repository: "docker.io/llajas/blog", Tag: "abc123def456789"},
 			},
 			expectedTags: map[string]string{
-				"docker.io/khuedoan/blog": "abc123def456789",
+				"docker.io/llajas/blog": "abc123def456789",
 			},
 		},
 		{

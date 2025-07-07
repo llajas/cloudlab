@@ -29,7 +29,7 @@ spec:
             initContainers:
               setup:
                 image:
-                  repository: docker.io/khuedoan/radicle-server
+                  repository: docker.io/llajas/radicle-server
                   tag: latest
                 env:
                   RAD_HOME: /var/lib/radicle
@@ -49,7 +49,7 @@ spec:
             containers:
               node:
                 image:
-                  repository: docker.io/khuedoan/radicle-server
+                  repository: docker.io/llajas/radicle-server
                   tag: latest
                 env:
                   RAD_HOME: /var/lib/radicle
@@ -57,7 +57,7 @@ spec:
                   - radicle-node
               api:
                 image:
-                  repository: docker.io/khuedoan/radicle-server
+                  repository: docker.io/llajas/radicle-server
                   tag: latest
                 env:
                   RAD_HOME: /var/lib/radicle
@@ -88,7 +88,7 @@ spec:
             containers:
               main:
                 image:
-                  repository: docker.io/khuedoan/radicle-explorer
+                  repository: docker.io/llajas/radicle-explorer
                   tag: latest
         service:
           server:

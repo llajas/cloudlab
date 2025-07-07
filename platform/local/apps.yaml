@@ -11,11 +11,11 @@ spec:
         elements:
           - namespace: test
             app: example
-          - namespace: khuedoan
+          - namespace: llajas
             app: blog
-          - namespace: khuedoan
+          - namespace: llajas
             app: notes
-          - namespace: khuedoan
+          - namespace: llajas
             app: homelab-docs
           - namespace: finance
             app: actualbudget

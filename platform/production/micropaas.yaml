@@ -31,12 +31,12 @@ spec:
             containers:
               main:
                 image:
-                  repository: docker.io/khuedoan/micropaas
+                  repository: docker.io/llajas/micropaas
                   tag: cd54ce6f0b2aeea079ece1ae01ac8291927708c1
                 env:
                   DOCKER_HOST: tcp://127.0.0.1:2375
                   SOFT_SERVE_INITIAL_ADMIN_KEYS: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5ue4np7cF34f6dwqH1262fPjkowHQ8irfjVC156PCG
-                  REGISTRY_HOST: docker.io/khuedoan
+                  REGISTRY_HOST: docker.io/llajas
                   GITOPS_REPO: cloudlab
                   GIT_USER_NAME: Khue's Bot
                   GIT_USER_EMAIL: mail@lajas.tech

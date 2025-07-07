@@ -301,7 +301,7 @@ func TestGitActivities_CommandStructure(t *testing.T) {
 	testPath := "/tmp/test/app/cluster.yaml"
 	expectedDir := "/tmp/test/app"
 	expectedFile := "cluster.yaml"
-	commitMessage := "chore(khuedoan/blog): update production version"
+	commitMessage := "chore(llajas/blog): update production version"
 
 	// Verify the path parsing logic
 	actualDir := filepath.Dir(testPath)

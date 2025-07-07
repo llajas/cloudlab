@@ -28,7 +28,7 @@ controllers:
           - -c
         args:
           - |
-            nix-shell -p git --command 'git clone https://github.com/khuedoan/homelab .'
+            nix-shell -p git --command 'git clone https://github.com/llajas/homelab .'
 
             while true; do
               nix-shell -p python311Packages.mkdocs-material --command 'mkdocs build'
