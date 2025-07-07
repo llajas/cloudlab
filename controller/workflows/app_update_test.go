@@ -272,7 +272,7 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_RealWorldExample() {
 		Namespace: "khuedoan",
 		App:       "blog",
 		Cluster:   "production",
-		Registry:  "registry.cloudlab.khuedoan.com",
+		Registry:  "registry.cloudlab.lajas.tech",
 		NewImages: []activities.Image{
 			{Repository: "docker.io/khuedoan/blog", Tag: "1234567890abcdef1234567890abcdef12345678"},
 		},
@@ -280,7 +280,7 @@ func (s *AppUpdateWorkflowTestSuite) TestAppUpdate_RealWorldExample() {
 	workspace := "/tmp/cloudlab-repos/realworld123"
 	appFilePath := workspace + "/apps/khuedoan/blog/production.yaml"
 	mockPushResult := &activities.PushResult{
-		Reference: "registry.cloudlab.khuedoan.com/khuedoan/blog:production",
+		Reference: "registry.cloudlab.lajas.tech/khuedoan/blog:production",
 		Digest:    "sha256:realworld789",
 	}
 

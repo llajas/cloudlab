@@ -22,7 +22,7 @@ ingress:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
-      - host: budget.cloudlab.khuedoan.com
+      - host: budget.cloudlab.lajas.tech
         paths:
           - path: /
             pathType: Prefix
@@ -31,7 +31,7 @@ ingress:
               port: http
     tls:
       - hosts:
-          - budget.cloudlab.khuedoan.com
+          - budget.cloudlab.lajas.tech
         secretName: actualbudget-tls-certificate
 persistence:
   data:

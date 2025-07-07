@@ -24,7 +24,7 @@ ingress:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
-      - host: www.khuedoan.com
+      - host: www.lajas.tech
         paths:
           - path: /
             pathType: Prefix
@@ -33,5 +33,5 @@ ingress:
               port: 3000
     tls:
       - hosts:
-          - www.khuedoan.com
+          - www.lajas.tech
         secretName: blog-tls-certificate

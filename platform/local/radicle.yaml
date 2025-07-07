@@ -119,7 +119,7 @@ spec:
                     service:
                       identifier: server
                       port: 8080
-              - host: code.khuedoan.com
+              - host: code.lajas.tech
                 paths:
                   - path: /
                     pathType: Prefix
@@ -129,7 +129,7 @@ spec:
             tls:
               - hosts:
                   - radicle.127.0.0.1.sslip.io
-                  - code.khuedoan.com
+                  - code.lajas.tech
                 secretName: radicle-tls-certificate
         persistence:
           data:

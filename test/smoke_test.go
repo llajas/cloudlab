@@ -6,7 +6,7 @@ import (
 )
 
 func TestBlog(t *testing.T) {
-	resp, err := http.Get("https://khuedoan.com") // TODO get domain name automatically
+	resp, err := http.Get("https://lajas.tech") // TODO get domain name automatically
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -18,7 +18,7 @@ func TestBlog(t *testing.T) {
 }
 
 func TestHomelabDocs(t *testing.T) {
-	resp, err := http.Get("https://homelab.khuedoan.com") // TODO get domain name automatically
+	resp, err := http.Get("https://homelab.lajas.tech") // TODO get domain name automatically
 	if err != nil {
 		t.Fatal(err)
 	}

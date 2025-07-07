@@ -24,7 +24,7 @@ ingress:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
-      - host: example.cloudlab.khuedoan.com
+      - host: example.cloudlab.lajas.tech
         paths:
           - path: /
             pathType: Prefix
@@ -33,5 +33,5 @@ ingress:
               port: 8080
     tls:
       - hosts:
-          - example.cloudlab.khuedoan.com
+          - example.cloudlab.lajas.tech
         secretName: example-tls-certificate

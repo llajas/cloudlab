@@ -51,7 +51,7 @@ ingress:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
-      - host: homelab.khuedoan.com
+      - host: homelab.lajas.tech
         paths:
           - path: /
             pathType: ImplementationSpecific
@@ -60,7 +60,7 @@ ingress:
               port: http
     tls:
       - hosts:
-          - homelab.khuedoan.com
+          - homelab.lajas.tech
         secretName: homelab-docs-tls-certificate
 persistence:
   source:

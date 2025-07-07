@@ -38,7 +38,7 @@ spec:
                   - sh
                   - -c
                   - |
-                    rad auth --alias=radicle.cloudlab.khuedoan.com
+                    rad auth --alias=radicle.cloudlab.lajas.tech
                     rad seed rad:zGtLfDcgmBqBUya1qTpzRzpBpoHx
                     rad seed rad:z38YiLVx2e4JC5Xo2qMNDGoMPHE7U
                     rad seed rad:z3pkjF1uaT1cZBrB8tBcCDtXGnrLQ
@@ -112,14 +112,14 @@ spec:
             annotations:
               cert-manager.io/cluster-issuer: letsencrypt-prod
             hosts:
-              - host: radicle.cloudlab.khuedoan.com
+              - host: radicle.cloudlab.lajas.tech
                 paths:
                   - path: /
                     pathType: Prefix
                     service:
                       identifier: server
                       port: 8080
-              - host: code.khuedoan.com
+              - host: code.lajas.tech
                 paths:
                   - path: /
                     pathType: Prefix
@@ -128,8 +128,8 @@ spec:
                       port: 80
             tls:
               - hosts:
-                  - radicle.cloudlab.khuedoan.com
-                  - code.khuedoan.com
+                  - radicle.cloudlab.lajas.tech
+                  - code.lajas.tech
                 secretName: radicle-tls-certificate
         persistence:
           data:

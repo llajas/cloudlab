@@ -24,7 +24,7 @@ spec:
     helm:
       valuesObject:
         config:
-          issuer: https://dex.cloudlab.khuedoan.com
+          issuer: https://dex.cloudlab.lajas.tech
           storage:
             type: kubernetes
             config:
@@ -35,29 +35,29 @@ spec:
           enablePasswordDB: true
           staticPasswords:
             - username: admin
-              email: admin@cloudlab.khuedoan.com
+              email: admin@cloudlab.lajas.tech
               userID: "b34bd9d2-70ed-4ee1-8d22-6e4fc84f8d17"
               hashFromEnv: ADMIN_PASSWORD_HASH
           staticClients:
             - id: argocd
               name: ArgoCD
               redirectURIs:
-                - 'https://argocd.cloudlab.khuedoan.com/auth/callback'
+                - 'https://argocd.cloudlab.lajas.tech/auth/callback'
               secretEnv: ARGOCD_CLIENT_SECRET
             - id: grafana
               name: Grafana
               redirectURIs:
-                - 'https://grafana.cloudlab.khuedoan.com/login/generic_oauth'
+                - 'https://grafana.cloudlab.lajas.tech/login/generic_oauth'
               secretEnv: GRAFANA_CLIENT_SECRET
             - id: kiali
               name: Kiali
               redirectURIs:
-                - 'https://kiali.cloudlab.khuedoan.com'
+                - 'https://kiali.cloudlab.lajas.tech'
               secretEnv: KIALI_CLIENT_SECRET
             - id: temporal
               name: Temporal
               redirectURIs:
-                - 'https://temporal.cloudlab.khuedoan.com/auth/sso/callback'
+                - 'https://temporal.cloudlab.lajas.tech/auth/sso/callback'
               secretEnv: TEMPORAL_CLIENT_SECRET
         envFrom:
           - secretRef:
@@ -68,11 +68,11 @@ spec:
           annotations:
             cert-manager.io/cluster-issuer: letsencrypt-prod
           hosts:
-            - host: dex.cloudlab.khuedoan.com
+            - host: dex.cloudlab.lajas.tech
               paths:
                 - path: /
                   pathType: ImplementationSpecific
           tls:
             - secretName: dex-tls-certificate
               hosts:
-                - dex.cloudlab.khuedoan.com
+                - dex.cloudlab.lajas.tech
