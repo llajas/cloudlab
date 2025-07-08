@@ -19,7 +19,7 @@ resource "k3d_cluster" "this" {
   }
 
   port {
-    host_port      = 800
+    host_port      = 80
     container_port = 80
     node_filters = [
       "loadbalancer",
@@ -27,7 +27,7 @@ resource "k3d_cluster" "this" {
   }
 
   port {
-    host_port      = 4430
+    host_port      = 443
     container_port = 443
     node_filters = [
       "loadbalancer",
