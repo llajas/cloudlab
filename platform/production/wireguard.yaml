@@ -18,36 +18,44 @@ spec:
       - ApplyOutOfSyncOnly=true
       - ServerSideApply=true
   source:
-    repoURL: https://bjw-s-labs.github.io/helm-charts
-    chart: app-template
-    targetRevision: 3.7.3
+    repoURL: oci://ghcr.io/h44z/charts/wg-portal
+    targetRevision: 0.7.2
     helm:
       valuesObject:
-        controllers:
-          wireguard:
-            containers:
-              app:
-                image:
-                  repository: lscr.io/linuxserver/wireguard
-                  tag: latest
-                env:
-                  LOG_CONFS: false
-                  USE_COREDNS: true
-                securityContext:
-                  capabilities:
-                    add:
-                      - NET_ADMIN
-        service:
-          wireguard:
-            controller: wireguard
-            type: LoadBalancer
-            ports:
-              http:
-                port: 51820
-                protocol: UDP
+        config:
+          core:
+            create_default_peer: true
+            self_provisioning_allowed: true
+          web:
+            external_url: https://wireguard.cloudlab.lajas.tech
+          auth:
+            hide_login_form: true
+            # Disable passkey to enforce OIDC
+            webauthn:
+              enabled: false
+            oidc:
+              - id: sso
+                provider_name: sso
+                display_name: Login with SSO
+                registration_enabled: true
+                base_url: https://dex.cloudlab.lajas.tech
+                client_id: wireguard
+                client_secret: $SSO_CLIENT_SECRET
+                extra_scopes:
+                  - profile
+                  - email
+                field_map:
+                  is_admin: email
+                admin_mapping:
+                  admin_value_regex: ^admin@cloudlab.lajas.tech$
+        envFrom:
+          - secretRef:
+              name: wireguard-secret
+        ingress:
+          enabled: true
+          className: nginx
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-prod
+          tls: true
         persistence:
-          config:
-            type: secret
-            name: "wireguard-secret"
-            globalMounts:
-              - path: /config/wg_confs
+          enabled: true

@@ -29,7 +29,7 @@
 │       │       └── ${MODULE}
 │       │           └── terragrunt.hcl
 │       ├── metal
-│       │   └── vn-south-1
+│       │   └── vn-southeast-1
 │       │       ├── bootstrap
 │       │       │   └── terragrunt.hcl
 │       │       └── cluster
@@ -81,18 +81,19 @@
 
 ## Estimated cost
 
-| Provider        | Service                     | Usage             | Pricing                        |
-| :--             | :--                         | :--               | :--                            |
-| Cloudflare      | R2 Bucket (Terraform state) | 2                 | Free                           |
-| Cloudflare      | Domain                      | 2                 | 1.67$/month                    |
-| Cloudflare      | Load Balancer               | 1                 | 5$/month                       |
-| Cloudflare      | Tunnel                      | 2                 | Free                           |
-| Oracle Cloud    | Virtual Cloud Network       | 1                 | Free                           |
-| Oracle Cloud    | `VM.Standard.A1.Flex` (ARM) | 4 cores, 24GB mem | Free (yes, you read it right!) |
-| Oracle Cloud    | Block Storage               | 200GB             | Free                           |
-| Metal           | Hardware depreciation       |                   | 6.36$/month                    |
-| Metal           | Electricity                 |                   | 3$/month                       |
-| **Total**       |                             |                   | 16.03$/month                   |
+| Provider     | Service                                                     | Usage | Pricing     |
+| :--          | :--                                                         | :--   | :--         |
+| Metal        | Hardware depreciation                                       |       | 76.32$/year |
+| Metal        | Electricity                                                 |       | 36$/year    |
+| Oracle Cloud | Virtual Cloud Network                                       | 1     | Free        |
+| Oracle Cloud | `VM.Standard.A1.Flex` (ARM) - 4 cores, 24GB RAM, 200GB disk | 1     | Free        |
+| Hetzner      | VM `CAX21` - 4 cores, 8GB RAM, 80GB disk                    | 1     | 83.88$/year |
+| Cloudflare   | R2 Bucket (Terraform state)                                 | 2     | Free        |
+| Cloudflare   | Domain                                                      | 2     | 20$/year    |
+| Cloudflare   | Load Balancer                                               | 1     | 60$/year    |
+| Cloudflare   | Tunnel                                                      | 2     | Free        |
+| Backblaze    | B2 Bucket (backup)                                          | 1TB   | 72$/year    |
+| **Total**    |                                                             |       | 348.2$/year |
 
 ## Get started
 
@@ -152,9 +153,22 @@ make
 - Fix OCI plain HTTP for local development
 - Config git username and email
 - Credentials for the worker (SSH priv + pub + knowhosts?)
+- Contract between clouds:
+  - Compute, x86_64 or aarch64
+  - Public IPv6
+  - Allow ports:
+    - 443
+    - 80 (for HTTP-01)
+    - 22
+    - 51820 and 51821 (for Wireguard IPv4 and IPv6)
+  - NixOS, with SSH access
+- Firewall rules (currently manually managed in routers):
+  - TCP: 6443 (Kube API), 443 (HTTPS), 80 (HTTP), 10250 (Kubelet metrics), 22 (SSH)
+  - UDP: 51820 (Wireguard IPv4), 51821 (Wireguard IPv6)
 
 ## Acknowledgments and References
 
 - [Oracle Terraform Modules](https://github.com/oracle-terraform-modules)
 - [Official k3s systemd service file](https://github.com/k3s-io/k3s/blob/master/k3s.service)
 - [Sample Prometheus configuration for Istio](https://github.com/istio/istio/blob/master/samples/addons/extras/prometheus-operator.yaml)
+- [Terraform and nixos-anywhere infrastructure for wiki.nixos.org](https://github.com/NixOS/nixos-wiki-infra)

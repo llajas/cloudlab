@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
   };
 
   outputs =
@@ -23,12 +23,14 @@
               age
               ansible
               ansible-lint
+              fzf
               gnumake
               go
               k3d
               kubectl
               kubernetes-helm
               nixfmt-rfc-style
+              nixos-anywhere
               openssh
               opentofu
               oras

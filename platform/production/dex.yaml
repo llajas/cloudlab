@@ -34,10 +34,16 @@ spec:
             skipApprovalScreen: true
           enablePasswordDB: true
           staticPasswords:
+            # uuidgen
+            # echo foo | nix-shell -p apacheHttpd --command "htpasswd -BinC 10 admin" | cut -d: -f2
             - username: admin
               email: admin@cloudlab.lajas.tech
               userID: "b34bd9d2-70ed-4ee1-8d22-6e4fc84f8d17"
               hashFromEnv: ADMIN_PASSWORD_HASH
+            - username: khuedoan
+              email: mail@lajas.tech
+              userID: "41dd7db5-4cb3-4856-a7f1-0d5168a10a12"
+              hashFromEnv: KHUEDOAN_PASSWORD_HASH
           staticClients:
             - id: argocd
               name: ArgoCD
@@ -59,6 +65,16 @@ spec:
               redirectURIs:
                 - 'https://temporal.cloudlab.lajas.tech/auth/sso/callback'
               secretEnv: TEMPORAL_CLIENT_SECRET
+            - id: forgejo
+              name: Forgejo
+              redirectURIs:
+                - 'https://code.lajas.tech/user/oauth2/SSO/callback'
+              secretEnv: FORGEJO_CLIENT_SECRET
+            - id: wireguard
+              name: WireGuard
+              redirectURIs:
+                - 'https://wireguard.cloudlab.lajas.tech/api/v0/auth/login/sso/callback'
+              secretEnv: WIREGUARD_CLIENT_SECRET
         envFrom:
           - secretRef:
               name: dex-secrets
